@@ -16,7 +16,7 @@ struct studente{
     date dob;
 };
 
-//TODO rivedere
+
 //Restituisce true se a e' piu' vecchio di b
 bool confrontaData(date a,date b){
 
@@ -41,6 +41,16 @@ bool confrontaData(date a,date b){
         }
     }
     return false;
+}
+
+bool cercaStud(studente s[],char *nome){
+    for(int i=0;i<49;i++)
+        if(nome==s[i].nome){
+            cout<<"Eccolo";
+            //TODO quaaaa
+            stampaStud(s[i]);
+            return true;
+        }
 }
 
 void stampaStud(studente s){
@@ -74,7 +84,7 @@ int main() {
 
 
     int i=0;
-    //TODO mettere i<49
+
     while(i<49){
 
         input>>s[i].mat;
