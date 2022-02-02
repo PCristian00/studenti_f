@@ -44,7 +44,7 @@ bool confrontaData(date a,date b){
 }
 
 void stampaStud(studente s){
-    cout<<"M: "<<s.mat<<endl<<" Nome: "<<s.nome<<" Cognome: "<<s.cognome<<endl;
+    cout<<"M: "<<s.mat<<endl<<"Nome: "<<s.nome<<" Cognome: "<<s.cognome<<endl;
     cout<<"Data di nascita: "<<s.dob.g<<"/"<<s.dob.m<<"/"<<s.dob.a<<endl;
 }
 
@@ -65,44 +65,31 @@ int main() {
     studente young,old;
 
     //TODO rivedere, sembra andare
-    young.dob.g=32;
-    young.dob.m=13;
-    young.dob.a=3000;
-    old.dob.g=-10;
-    old.dob.m=-10;
-    old.dob.a=-10;
+    old.dob.g=32;
+    old.dob.m=13;
+    old.dob.a=3000;
+    young.dob.g=-10;
+    young.dob.m=-10;
+    young.dob.a=-10;
 
 
     int i=0;
     //TODO mettere i<49
-    while(i<1){
-
-
+    while(i<49){
 
         input>>s[i].mat;
-        //cout<<"mat: "<<s[i].mat<<endl;
 
         input>>s[i].nome;
 
-        //input.ignore(1);
-        //input.get(s[i].nome,10);
-        //cout<<"nome: "<<s[i].nome<<endl;
-
-        //input.ignore(1);
         input>>s[i].cognome;
-        //cout<<"cognome: "<<s[i].cognome<<endl;
 
-        //input.ignore(1);
         input>>s[i].dob.g;
-        //cout << "dob: " << s[i].dob.g << "\t";
 
         input.ignore(1);
         input>>s[i].dob.m;
-        //cout << s[i].dob.m << "\t";
 
         input.ignore(1);
         input>>s[i].dob.a;
-        //cout << s[i].dob.a << "\t" << endl;
 
 
         if(confrontaData(s[i].dob,old.dob))
@@ -113,15 +100,9 @@ int main() {
         if(!confrontaData(s[i].dob,young.dob))
             young=s[i];
 
-
-
-        stampaStud(s[i]);
+        //stampaStud(s[i]);
 
         cout<<endl;
-
-
-        //input>>s[i].nome>>s[i].cognome>>s[i].dob.g>>s[i].dob.m>>s[i].dob.a;
-        //cout<<s[i].mat<<" "<<s[i].nome<<" "<<s[i].cognome<<" "<<s[i].dob.g<<" / "<<s[i].dob.m<<" / "<<s[i].dob.a<<endl;
         i++;
     }
 
@@ -130,6 +111,8 @@ int main() {
     cout<<endl;
     cout<<"Il piu giovane"<<endl;
     stampaStud(young);
+
+
 
     return 0;
 }
