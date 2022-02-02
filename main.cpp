@@ -10,13 +10,13 @@ struct date{
 };
 
 struct studente{
-    char mat[5];
+    char mat[6];
     char nome[21];
     char cognome[21];
     date dob;
 };
 
-
+//TODO rivedere
 //Restituisce true se a e' piu' vecchio di b
 bool confrontaData(date a,date b){
 
@@ -40,19 +40,21 @@ bool confrontaData(date a,date b){
             }
         }
     }
+    return false;
 }
 
 void stampaStud(studente s){
-    cout<<s.mat<<' '<<s.nome<<' '<<s.cognome;
-    cout<<s.dob.g<<"/"<<s.dob.m<<"/"<<s.dob.a<<endl;
+    cout<<"M: "<<s.mat<<endl<<" Nome: "<<s.nome<<" Cognome: "<<s.cognome<<endl;
+    cout<<"Data di nascita: "<<s.dob.g<<"/"<<s.dob.m<<"/"<<s.dob.a<<endl;
 }
 
 
 int main() {
     cout << "- Studenti -" << endl;
-    char filename[]="C:\\Users\\Thinkpad User\\CLionProjects\\studenti_f\\studenti.txt";
 
+    char filename[]="C:\\Users\\Thinkpad User\\CLionProjects\\studenti_f\\studenti.txt";
     fstream input;
+
     input.open(filename,ios::in);
     if(!input.is_open()){
         cout<<"Errore apertura file"<<endl;
@@ -62,48 +64,45 @@ int main() {
 
     studente young,old;
 
+    //TODO rivedere, sembra andare
     young.dob.g=32;
     young.dob.m=13;
     young.dob.a=3000;
-
     old.dob.g=-10;
     old.dob.m=-10;
     old.dob.a=-10;
 
 
     int i=0;
-    while(i<3){
+    //TODO mettere i<49
+    while(i<1){
+
+
 
         input>>s[i].mat;
-        cout<<"mat: "<<s[i].mat<<endl;
+        //cout<<"mat: "<<s[i].mat<<endl;
 
-        input.ignore(1);
-        input.getline(s[i].nome,sizeof s->nome);
-        cout<<"nome: "<<s[i].nome<<endl;
+        input>>s[i].nome;
 
-        input.ignore(1);
-        input.getline(s[i].cognome,sizeof s->cognome);
-        cout<<"cognome: "<<s[i].cognome<<endl;
+        //input.ignore(1);
+        //input.get(s[i].nome,10);
+        //cout<<"nome: "<<s[i].nome<<endl;
 
-        input.ignore(1);
+        //input.ignore(1);
+        input>>s[i].cognome;
+        //cout<<"cognome: "<<s[i].cognome<<endl;
+
+        //input.ignore(1);
         input>>s[i].dob.g;
-        cout << "dob: " << s[i].dob.g << "\t";
-
-
-        if(s[i].dob.g > young.dob.g) young.dob.g=s[i].dob.g;
+        //cout << "dob: " << s[i].dob.g << "\t";
 
         input.ignore(1);
-        input<<s[i].dob.m;
-        cout << s[i].dob.m << "\t";
-
-        if(s[i].dob.m < old.dob.m)
-        if(s[i].dob.m > young.dob.m) young.dob.m=s[i].dob.m;
-
-
+        input>>s[i].dob.m;
+        //cout << s[i].dob.m << "\t";
 
         input.ignore(1);
         input>>s[i].dob.a;
-        cout << s[i].dob.a << "\t" << endl;
+        //cout << s[i].dob.a << "\t" << endl;
 
 
         if(confrontaData(s[i].dob,old.dob))
@@ -111,7 +110,7 @@ int main() {
 
 
 
-        if(confrontaData(young.dob,s[i].dob))
+        if(!confrontaData(s[i].dob,young.dob))
             young=s[i];
 
 
@@ -128,6 +127,7 @@ int main() {
 
     cout<<"Il piu vecchio"<<endl;
     stampaStud(old);
+    cout<<endl;
     cout<<"Il piu giovane"<<endl;
     stampaStud(young);
 
