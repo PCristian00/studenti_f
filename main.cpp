@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
@@ -43,21 +44,27 @@ bool confrontaData(date a,date b){
     return false;
 }
 
-bool cercaStud(studente s[],char *nome){
-    for(int i=0;i<49;i++)
-        if(nome==s[i].nome){
-            cout<<"Eccolo";
-            //TODO quaaaa
-            stampaStud(s[i]);
-            return true;
-        }
-}
+
 
 void stampaStud(studente s){
     cout<<"M: "<<s.mat<<endl<<"Nome: "<<s.nome<<" Cognome: "<<s.cognome<<endl;
     cout<<"Data di nascita: "<<s.dob.g<<"/"<<s.dob.m<<"/"<<s.dob.a<<endl;
 }
 
+bool cercaStud(studente s[],char *nome){
+        int i=0;
+    while(i<49){
+        //stampaStud(s[i]);
+//cout<<s[i].nome<<"\t"<<nome<<endl;
+        if(strcmp(s[i].nome,nome)==0) {
+            //cout << "Eccolo"<<endl;
+            stampaStud(s[i]);
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
 
 int main() {
     cout << "- Studenti -" << endl;
@@ -112,7 +119,7 @@ int main() {
 
         //stampaStud(s[i]);
 
-        cout<<endl;
+        //cout<<endl;
         i++;
     }
 
@@ -121,6 +128,15 @@ int main() {
     cout<<endl;
     cout<<"Il piu giovane"<<endl;
     stampaStud(young);
+char *nome="venom";
+
+    cout<<endl;
+    cout<<"Inserire nome studente da cercare:"<<endl;
+    //cin>>nome;
+
+cout<<"Lo studente da te cercato"<<endl;
+    if(!cercaStud(s,nome))
+        cout<<"non e' stato trovato."<<endl;
 
 
 
